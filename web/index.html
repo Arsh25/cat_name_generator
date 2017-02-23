@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+ 	<meta charset="utf-8">
+  		<title>Random Cat Name Generator</title>
+</head>
+<body onload="request_cat_name()" >
+	<p id="name"> Here is your random cat name </p>
+	<p id="cat_gif"></p> 
+	<script>
+	  	function request_cat_name()
+	  	{
+			var name_para = document.getElementById("name");
+			var cat_gif = document.getElementById("cat_gif");
+	  		var req = new XMLHttpRequest();
+	  		req.onreadystatechange = function()
+	  		{
+	  			if(this.readyState == 4 && this.status == 200)
+	  			{
+	  				name_para.innerHTML += req.responseText;
+	  				cat_gif.innerHTML = '<a href="http://thecatapi.com"><img src="http://thecatapi.com/api/images/get?format=src&type=gif"></a>';
+	  			}	
+	  		};
+	  		req.open('GET','generate_name',true);
+	  		req.send();
+	  	};
+	  </script>
+</body>
+</html>
